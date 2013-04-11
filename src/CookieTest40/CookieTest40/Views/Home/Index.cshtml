@@ -1,0 +1,65 @@
+﻿@model dynamic
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>login</title>
+    </head>
+    <body>
+        <div>
+            <div>I'm @(User.Identity.IsAuthenticated ? "Authenticated" : "Not authenticated")</div>
+            
+            @if(ViewBag.HasCookie)
+            {
+                
+                <div>@ViewBag.DecryptResult</div>
+            }
+            else
+            {
+                <div>I didn't get an auth cookie.</div>
+            }
+            <table>
+                <tr><th>Setting</th><th>Value</th></tr>
+                <tr>
+                    <td>Installed .net version:</td>
+                    <td>@ViewBag.InstalledDotNetVersion</td>
+                </tr>
+                <tr>
+                    <td>Target Runtime:</td>
+                    <td>@ViewBag.TargetRuntime</td>
+                </tr>
+                <tr>
+                    <td>Compatibility mode:</td>
+                    <td>@ViewBag.CompatibilityMode</td>
+                </tr>
+                <tr>
+                    <td>ValidationAlgorithm:</td>
+                    <td>@ViewBag.ValidationAlgorithm</td>
+                </tr>
+                <tr>
+                    <td>ValidationKey:</td>
+                    <td>@ViewBag.ValidationKey</td>
+                </tr>
+                <tr>
+                    <td>DecryptionAlgorithm:</td>
+                    <td>@ViewBag.DecryptionAlgorithm</td>
+                </tr>
+                <tr>
+                    <td>DecryptionKey:</td>
+                    <td>@ViewBag.DecryptionKey</td>
+                </tr>
+                 <tr>
+                    <td>System.Web:</td>
+                    <td>@ViewBag.SystemWeb</td>
+                </tr>
+            </table>
+           
+
+            @using(Html.BeginForm())
+            {
+                <span>Username: </span>@Html.TextBox("Username")
+                 <input type="submit" value="Log in" />
+            }
+        </div>
+    </body>
+</html>
